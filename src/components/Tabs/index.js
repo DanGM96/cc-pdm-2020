@@ -1,42 +1,37 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
 import Icon from "@expo/vector-icons/MaterialIcons";
 
-import styles from "./styles";
+import { Container, TabsContainer, TabItem, TabText } from "./styles";
 
 export default function Tabs() {
 	return (
-		<View style={styles.container}>
-			<ScrollView
-				horizontal={true}
-				showsHorizontalScrollIndicator={false}
-				contentContainerStyle={styles.tabsContainer}
-			>
-				<View style={styles.tabItem}>
+		<Container>
+			<TabsContainer>
+				<TabItem>
 					<Icon name="person-add" size={24} color="#fff" />
-					<Text style={styles.tabText}>Indicar amigos</Text>
-				</View>
+					<TabText>Indicar amigos</TabText>
+				</TabItem>
 
-				<View style={styles.tabItem}>
+				<TabItem>
 					<Icon name="chat-bubble-outline" size={24} color="#fff" />
-					<Text style={styles.tabText}>Cobrar</Text>
-				</View>
+					<TabText>Cobrar</TabText>
+				</TabItem>
 
-				<View style={styles.tabItem}>
+				<TabItem>
 					<Icon name="arrow-downward" size={24} color="#fff" />
-					<Text style={styles.tabText}>Depositar</Text>
-				</View>
+					<TabText>Depositar</TabText>
+				</TabItem>
 
-				<View style={styles.tabItem}>
+				<TabItem>
 					<Icon name="arrow-upward" size={24} color="#fff" />
-					<Text style={styles.tabText}>Transferir</Text>
-				</View>
+					<TabText>Transferir</TabText>
+				</TabItem>
 
-				<View style={styles.tabItem}>
+				<TabItem>
 					<Icon name="lock" size={24} color="#fff" />
-					<Text style={styles.tabText}>Bloquear cartão</Text>
-				</View>
-			</ScrollView>
-		</View>
+					<TabText>Bloquear cartão</TabText>
+				</TabItem>
+			</TabsContainer>
+		</Container>
 	);
 }
