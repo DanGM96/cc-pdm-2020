@@ -1,24 +1,18 @@
 # Setup
 
----
-
-### Node.js
+## Node.js
 
 Follow the instructions for your OS
 
     https://nodejs.org/en/download/
 
----
-
-### Yarn
+## Yarn
 
 Follow the instructions for your OS
 
     https://classic.yarnpkg.com/docs/install/
 
----
-
-### Expo
+## Expo
 
 Install using npm
 
@@ -32,9 +26,7 @@ Run your project
 
     expo start
 
----
-
-### Other modules
+## Other modules
 
 Install **React Navigation**
 
@@ -52,4 +44,16 @@ Install **Styled Components**
 
     yarn add styled-components
 
----
+# TODO
+
+Axios
+
+    yarn add axios
+
+react-native-tab-view
+
+    yarn add react-native-tab-view
+
+react-native-elements
+
+    yarn add react-native-elements
