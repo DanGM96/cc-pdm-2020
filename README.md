@@ -44,16 +44,10 @@ Install **Styled Components**
 
     yarn add styled-components
 
-# TODO
-
-Axios
+Install **Axios**
 
     yarn add axios
 
-react-native-tab-view
+Install **Tab View**
 
     yarn add react-native-tab-view
-
-react-native-elements
-
-    yarn add react-native-elements

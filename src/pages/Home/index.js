@@ -1,36 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-	Text,
-	View,
-	Button,
-	Image,
-	FlatList,
-	TouchableHighlight,
-	TouchableOpacity,
-} from "react-native";
+import { Image, FlatList, TouchableOpacity } from "react-native";
 
-import api from "../../services/api";
 import redditapi from "../../services/redditapi";
 
 import {
 	Container,
-	ListaCards,
-	Header,
-	Logo,
-	Description,
+	Lista,
 	ButtonContainer,
 	ButtonText,
-	CardDetails,
-	CardDetailsText,
-	Botao,
+	Button,
 } from "./styles";
 
 export default function Home({ navigation }) {
 	const [reddit, setReddit] = useState([]);
-	const [total, setTotal] = useState(0);
-	const [offset, setOffset] = useState(0);
 	const [loading, setLoading] = useState(false);
-
 	const [limit, setLimit] = useState(25);
 	const [after, setAfter] = useState("");
 
@@ -39,20 +22,17 @@ export default function Home({ navigation }) {
 	}, []);
 
 	async function loadReddit() {
-		const totalReddit = 100;
 		if (loading) {
 			return;
 		}
-		if (total > 0 && reddit.length == totalReddit) {
-			return;
-		}
+
 		setLoading(true);
 
 		const response = await redditapi.get(`popular/.json`, {
 			params: { limit, after },
 		});
 		setAfter(response.data.data.after);
-		//console.log(response.data.data.children);
+
 		let data = response.data.data.children.map((data) => data.data);
 		data.forEach((child) => {
 			if (child.thumbnail.length < 10) {
@@ -61,15 +41,11 @@ export default function Home({ navigation }) {
 			}
 		});
 		setReddit([...reddit, ...data]);
-		//rsetOffset(offset + limit);
 		setLoading(false);
 	}
 	return (
 		<Container>
-			<Header>
-				<Logo>Reading it</Logo>
-			</Header>
-			<ListaCards>
+			<Lista>
 				<FlatList
 					data={reddit}
 					keyExtractor={(reddit) => reddit.name}
@@ -77,9 +53,9 @@ export default function Home({ navigation }) {
 					onEndReachedThreshold={0.1}
 					renderItem={({ item: reddit }) => (
 						<TouchableOpacity
-							onPress={() => navigation.navigate("Post", { reddit })}
+							onPress={() => navigation.navigate("Content", { reddit })}
 						>
-							<Botao>
+							<Button>
 								<ButtonContainer>
 									<Image
 										style={{ height: 100, width: 100 }}
@@ -87,28 +63,11 @@ export default function Home({ navigation }) {
 									></Image>
 									<ButtonText>{reddit.title}</ButtonText>
 								</ButtonContainer>
-							</Botao>
+							</Button>
 						</TouchableOpacity>
 					)}
 				/>
-			</ListaCards>
+			</Lista>
 		</Container>
 	);
 }
-
-/*{
-	<View>
-		<FlatList
-			data={pokemons}
-			keyExtractor={(pokemon) => String(pokemon.name)}
-			onEndReached={loadPokemons}
-			onEndReachedThreshold={0.1}
-			renderItem={({ item: pokemon }) => (
-				<Button
-					title={pokemon.name}
-					onPress={() => navigation.navigate("Details", { pokemon })}
-				/>
-			)}
-		/>
-	</View>;
-}*/
